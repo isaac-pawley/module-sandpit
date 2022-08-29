@@ -46,7 +46,7 @@ php artisan vendor:publish --tag="module-sandpit-views"
 
 ```php
 $moduleSandpit = new IsaacPawley\ModuleSandpit();
-echo $moduleSandpit->echoPhrase('Hello, IsaacPawley!');
+echo $moduleSandpit->echoPhrase('Hello, Isaac Pawley!');
 ```
 
 ## Testing
