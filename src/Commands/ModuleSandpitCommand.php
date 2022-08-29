@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace IsaacPawley\ModuleSandpit\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class ModuleSandpitCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'module-sandpit';
 
     public $description = 'My command';
 
