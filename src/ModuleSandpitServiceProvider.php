@@ -2,6 +2,8 @@
 
 namespace IsaacPawley\ModuleSandpit;
 
+use IsaacPawley\ModuleSandpit\Contracts\ContactsRepositoryInterface;
+use IsaacPawley\ModuleSandpit\Services\ContactsRepository;
 use IsaacPawley\ModuleSandpit\Commands\ModuleSandpitCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -18,8 +20,18 @@ class ModuleSandpitServiceProvider extends PackageServiceProvider
         $package
             ->name('module-sandpit')
             ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_module-sandpit_table')
+            ->hasRoute('web')
             ->hasCommand(ModuleSandpitCommand::class);
+    }
+
+    public function registeringPackage()
+    {
+        $this->app->bind(ContactsRepositoryInterface::class, ContactsRepository::class);
+    }
+
+    public function bootingPackage()
+    {
+        parent::bootingPackage();
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 }
