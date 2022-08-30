@@ -2,10 +2,10 @@
 
 namespace IsaacPawley\ModuleSandpit\Policies;
 
-use IsaacPawley\ModuleSandpit\Models\Contacts;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
+use IsaacPawley\ModuleSandpit\Models\Contacts;
 
 class ContactsPolicy
 {

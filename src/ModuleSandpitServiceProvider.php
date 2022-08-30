@@ -2,9 +2,9 @@
 
 namespace IsaacPawley\ModuleSandpit;
 
+use IsaacPawley\ModuleSandpit\Commands\ModuleSandpitCommand;
 use IsaacPawley\ModuleSandpit\Contracts\ContactsRepositoryInterface;
 use IsaacPawley\ModuleSandpit\Services\ContactsRepository;
-use IsaacPawley\ModuleSandpit\Commands\ModuleSandpitCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 

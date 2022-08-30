@@ -13,31 +13,31 @@ use IsaacPawley\ModuleSandpit\Requests\UpdateContactsRequest;
 
 class ContactsController extends Controller
 {
-    public function __construct(private readonly ContactsRepositoryInterface $contactsRepository) {}
+    public function __construct(private readonly ContactsRepositoryInterface $contactsRepository)
+    {
+    }
 
-    public function index()
-    : Response
+    public function index(): Response
     {
         return Inertia::render('Contacts/Index', [
-            'contacts' => Contacts::all()
+            'contacts' => Contacts::all(),
         ]);
     }
 
-    public function create()
-    : Response
+    public function create(): Response
     {
         return Inertia::render('Contacts/Create');
     }
 
-    public function store(StoreContactsRequest $request)
-    : RedirectResponse {
+    public function store(StoreContactsRequest $request): RedirectResponse
+    {
         $contactName = $this->contactsRepository->createContact($request->data());
 
         return redirect(route('contacts.index'))->with([
             'flash' => [
                 'bannerStyle' => 'success',
-                'banner'      => 'Huzzah!!!! '.$contactName.' was created'
-            ]
+                'banner' => 'Huzzah!!!! '.$contactName.' was created',
+            ],
         ]);
     }
 
@@ -47,10 +47,10 @@ class ContactsController extends Controller
      * @param  Contacts  $contact
      * @return Response
      */
-    public function edit(Contacts $contact)
-    : Response {
+    public function edit(Contacts $contact): Response
+    {
         return Inertia::render('Contacts/Edit', [
-            'contact' => $contact
+            'contact' => $contact,
         ]);
     }
 
@@ -61,15 +61,15 @@ class ContactsController extends Controller
      * @param  Contacts  $contact
      * @return RedirectResponse
      */
-    public function update(UpdateContactsRequest $request, Contacts $contact)
-    : RedirectResponse {
+    public function update(UpdateContactsRequest $request, Contacts $contact): RedirectResponse
+    {
         $contact->update($request->toArray());
 
         return redirect(route('contacts.index'))->with([
             'flash' => [
                 'bannerStyle' => 'success',
-                'banner'      => 'Huzzah!!!! '.$contact->name.' was updated'
-            ]
+                'banner' => 'Huzzah!!!! '.$contact->name.' was updated',
+            ],
         ]);
     }
 
@@ -79,15 +79,15 @@ class ContactsController extends Controller
      * @param  Contacts  $contact
      * @return RedirectResponse
      */
-    public function destroy(Contacts $contact)
-    : RedirectResponse {
+    public function destroy(Contacts $contact): RedirectResponse
+    {
         $contact->delete();
 
         return redirect(route('contacts.index'))->with([
             'flash' => [
                 'bannerStyle' => 'danger',
-                'banner'      => 'Success! Contact deleted'
-            ]
+                'banner' => 'Success! Contact deleted',
+            ],
         ]);
     }
 }
