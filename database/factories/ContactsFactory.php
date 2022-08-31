@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ContactsFactory extends Factory
 {
+    protected $model = Contacts::class;
+
     public function definition()
     : array
     {
