@@ -10,59 +10,43 @@ class ContactsPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Determine whether the user can view any models.
-     */
-    public function viewAny()
+    public function viewAny(): bool
     {
-        //
+        return true;
     }
 
-    /**
-     * Determine whether the user can view the model.
-     */
-    public function view(Contacts $contacts)
+    public function view(): bool
     {
-        //
+        return true;
     }
 
-    /**
-     * Determine whether the user can create models.
-     */
-    public function create(User $user) // @phpstan-ignore-line
+    // @phpstan-ignore-next-line
+    public function create(User $user): bool
     {
         return $user->name === 'Isaac Pawley'; // @phpstan-ignore-line
     }
 
-    /**
-     * Determine whether the user can update the model.
-     */
-    public function update(User $user, Contacts $contact) // @phpstan-ignore-line
+    // @phpstan-ignore-next-line
+    public function update(User $user, Contacts $contact): bool
     {
         return $user->name === 'Isaac Pawley'; // @phpstan-ignore-line
     }
 
-    /**
-     * Determine whether the user can delete the model.
-     */
-    public function delete(Contacts $contacts)
+    // @phpstan-ignore-next-line
+    public function delete(User $user, Contacts $contacts): bool
     {
-        //
+        return $user->name === 'Isaac Pawley'; // @phpstan-ignore-line
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(Contacts $contacts)
+    // @phpstan-ignore-next-line
+    public function restore(User $user, Contacts $contacts): bool
     {
-        //
+        return $user->name === 'Isaac Pawley'; // @phpstan-ignore-line
     }
 
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(Contacts $contacts)
+    // @phpstan-ignore-next-line
+    public function forceDelete(User $user, Contacts $contacts): bool
     {
-        //
+        return $user->name === 'Isaac Pawley'; // @phpstan-ignore-line
     }
 }

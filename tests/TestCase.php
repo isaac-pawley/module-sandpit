@@ -23,7 +23,7 @@ class TestCase extends Orchestra
         );
     }
 
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
             ModuleSandpitServiceProvider::class,
@@ -36,7 +36,7 @@ class TestCase extends Orchestra
         config()->set('database.default', 'testing');
 
         $migration = include_once __DIR__.'/../database/migrations/2022_08_25_225100_create_contacts_table.php';
-//        $migration->up();
+        $migration->up();
     }
 
     protected function makeMockRequest($view)
