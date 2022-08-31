@@ -8,8 +8,7 @@ use IsaacPawley\ModuleSandpit\Models\Contacts;
 
 class ContactsRepository implements ContactsRepositoryInterface
 {
-    public function createContact(StoreContactsDTO $contactDTO)
-    : string
+    public function createContact(StoreContactsDTO $contactDTO): string
     {
         $contact = Contacts::query()->create((array) $contactDTO);
 

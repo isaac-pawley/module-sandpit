@@ -2,29 +2,27 @@
 
 namespace IsaacPawley\ModuleSandpit\Requests;
 
+use Illuminate\Foundation\Http\FormRequest;
 use IsaacPawley\ModuleSandpit\DataTransferObjects\StoreContactsDTO;
 use IsaacPawley\ModuleSandpit\Models\Contacts;
-use Illuminate\Foundation\Http\FormRequest;
 
 class StoreContactsRequest extends FormRequest
 {
-    public function authorize()
-    : bool
+    public function authorize(): bool
     {
         return $this->user()?->can('create', Contacts::class) ?: false;
     }
 
-    public function rules()
-    : array
+    public function rules(): array
     {
         return [
             'title' => [
                 'required',
             ],
-            'name'  => [
+            'name' => [
                 'required',
             ],
-            'role'  => [
+            'role' => [
                 'required',
             ],
             'email' => [
@@ -34,8 +32,7 @@ class StoreContactsRequest extends FormRequest
         ];
     }
 
-    public function data()
-    : StoreContactsDTO
+    public function data(): StoreContactsDTO
     {
         return StoreContactsDTO::fromRequest($this);
     }

@@ -2,19 +2,16 @@
 
 namespace IsaacPawley\ModuleSandpit\Requests;
 
-use IsaacPawley\ModuleSandpit\Models\Contacts;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateContactsRequest extends FormRequest
 {
-    public function authorize()
-    : bool
+    public function authorize(): bool
     {
         return $this->user()?->can('update', $this->contact) ?: false;
     }
 
-    public function rules()
-    : array
+    public function rules(): array
     {
         return [
             'title' => [

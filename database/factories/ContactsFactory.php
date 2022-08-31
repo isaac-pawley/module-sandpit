@@ -2,8 +2,8 @@
 
 namespace IsaacPawley\ModuleSandpit\Database\Factories;
 
-use IsaacPawley\ModuleSandpit\Models\Contacts;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use IsaacPawley\ModuleSandpit\Models\Contacts;
 
 /**
  * @extends Factory<Contacts>
@@ -12,8 +12,7 @@ class ContactsFactory extends Factory
 {
     protected $model = Contacts::class;
 
-    public function definition()
-    : array
+    public function definition(): array
     {
         return [
             'name' => $this->faker->name(),
