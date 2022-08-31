@@ -3,8 +3,8 @@
 namespace IsaacPawley\ModuleSandpit\Policies;
 
 use App\Models\User;
-use IsaacPawley\ModuleSandpit\Models\Contacts;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use IsaacPawley\ModuleSandpit\Models\Contacts;
 
 class ContactsPolicy
 {

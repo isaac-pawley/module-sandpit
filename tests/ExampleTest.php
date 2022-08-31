@@ -11,13 +11,13 @@ it('can test', function () {
 
     $response = $this->makeMockRequest(
         Inertia::render('Contacts/Index', [
-            'contacts' => Contacts::all()
+            'contacts' => Contacts::all(),
         ])
     );
 
-    $response->assertInertia(fn(Assert $page) => $page
+    $response->assertInertia(fn (Assert $page) => $page
         ->component('Contacts/Index')
-        ->has('contacts', 1, fn(Assert $page) => $page
+        ->has('contacts', 1, fn (Assert $page) => $page
             ->where('id', $contacts->first()->id)
             ->where('title', $contacts->first()->title)
             ->where('name', $contacts->first()->name)

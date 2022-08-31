@@ -4,9 +4,9 @@ namespace IsaacPawley\ModuleSandpit\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Inertia\Inertia;
+use Inertia\ServiceProvider as InertiaTestingServiceProvider;
 use IsaacPawley\ModuleSandpit\ModuleSandpitServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Inertia\ServiceProvider as InertiaTestingServiceProvider;
 
 class TestCase extends Orchestra
 {
