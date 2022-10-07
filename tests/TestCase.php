@@ -10,6 +10,14 @@ use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
+    protected function getPackageProviders($app): array
+    {
+        return [
+            ModuleSandpitServiceProvider::class,
+            InertiaTestingServiceProvider::class,
+        ];
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -23,19 +31,11 @@ class TestCase extends Orchestra
         );
     }
 
-    protected function getPackageProviders($app): array
-    {
-        return [
-            ModuleSandpitServiceProvider::class,
-            InertiaTestingServiceProvider::class,
-        ];
-    }
-
     public function getEnvironmentSetUp($app)
     {
         config()->set('database.default', 'testing');
 
-        $migration = include_once __DIR__.'/../database/migrations/2022_08_25_225100_create_contacts_table.php';
+        $migration = include __DIR__.'/../database/migrations/2022_08_25_225100_create_contacts_table.php';
         $migration->up();
     }
 

@@ -1,7 +1,9 @@
 <?php
 
 use Inertia\Inertia;
+use Inertia\Response;
 use Inertia\Testing\AssertableInertia as Assert;
+use IsaacPawley\ModuleSandpit\Facades\ModuleSandpit;
 use IsaacPawley\ModuleSandpit\Models\Contacts;
 
 beforeEach()->refreshDatabase();
@@ -26,4 +28,14 @@ it('can test', function () {
             ->etc()
         )
     );
+});
+
+test('ContactsController::index returns Inertia\Response::class', function () {
+    $response = ModuleSandpit::index();
+
+    expect($response)->toBeInstanceOf(Response::class);
+
+    /*dd($this->get('/contacts')->assertInertia(fn (Assert $page) => $page
+        ->component('Contacts/Index')
+    ));*/
 });

@@ -2,10 +2,12 @@
 
 namespace IsaacPawley\ModuleSandpit\Controllers;
 
+use Illuminate\Contracts\Support\Responsable;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Controller;
-use Inertia\Inertia;
-use Inertia\Response;
 use IsaacPawley\ModuleSandpit\Contracts\ContactsRepositoryInterface;
 use IsaacPawley\ModuleSandpit\Models\Contacts;
 use IsaacPawley\ModuleSandpit\Requests\StoreContactsRequest;
@@ -13,25 +15,25 @@ use IsaacPawley\ModuleSandpit\Requests\UpdateContactsRequest;
 
 class ContactsController extends Controller
 {
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
     public function __construct(private readonly ContactsRepositoryInterface $contactsRepository)
     {
     }
 
-    public function index(): Response
+    public function index(): Responsable
     {
-        return Inertia::render('Contacts/Index', [
-            'contacts' => Contacts::all(),
-        ]);
+        return $this->contactsRepository->indexContacts();
     }
 
-    public function create(): Response
+    public function create(): Responsable
     {
-        return Inertia::render('Contacts/Create');
+        return $this->contactsRepository->createContact();
     }
 
     public function store(StoreContactsRequest $request): RedirectResponse
     {
-        $contactName = $this->contactsRepository->createContact($request->data());
+        $contactName = $this->contactsRepository->saveContact($request->data());
 
         return redirect(route('contacts.index'))->with([
             'flash' => [
@@ -44,31 +46,29 @@ class ContactsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Contacts  $contact
-     * @return Response
+     * @param  int  $id
+     * @return Responsable
      */
-    public function edit(Contacts $contact): Response
+    public function edit(int $id): Responsable
     {
-        return Inertia::render('Contacts/Edit', [
-            'contact' => $contact,
-        ]);
+        return $this->contactsRepository->editContact($id);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  UpdateContactsRequest  $request
-     * @param  Contacts  $contact
+     * @param  int  $id
      * @return RedirectResponse
      */
-    public function update(UpdateContactsRequest $request, Contacts $contact): RedirectResponse
+    public function update(UpdateContactsRequest $request, int $id): RedirectResponse
     {
-        $contact->update($request->toArray());
+        $contactName = $this->contactsRepository->updateContact($id, $request->data());
 
         return redirect(route('contacts.index'))->with([
             'flash' => [
                 'bannerStyle' => 'success',
-                'banner' => 'Huzzah!!!! '.$contact->name.' was updated',
+                'banner' => 'Huzzah!!!! '.$contactName.' was updated',
             ],
         ]);
     }
