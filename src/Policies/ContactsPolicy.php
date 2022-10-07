@@ -4,7 +4,6 @@ namespace IsaacPawley\ModuleSandpit\Policies;
 
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Support\Facades\Auth;
 use IsaacPawley\ModuleSandpit\Models\Contacts;
 
 class ContactsPolicy
