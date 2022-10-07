@@ -12,34 +12,24 @@ This is where your description should go. Limit it to a paragraph or two. Consid
 
 You can install the package via composer:
 
-```bash
-composer require isaac-pawley/module-sandpit
+```json
+{
+  "require": {
+      "isaac-pawley/module-sandpit": "dev-main"
+  },
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../module-sandpit"
+    }
+  ]
+}
 ```
 
-You can publish and run the migrations with:
+You can run the migrations with:
 
 ```bash
-php artisan vendor:publish --tag="module-sandpit-migrations"
 php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="module-sandpit-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="module-sandpit-views"
 ```
 
 ## Usage
