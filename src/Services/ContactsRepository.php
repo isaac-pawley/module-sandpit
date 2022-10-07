@@ -18,6 +18,7 @@ class ContactsRepository implements ContactsRepositoryInterface
             'contacts' => Contacts::all(),
         ]);
     }
+
     public function editContact(int $id): Responsable
     {
         return Inertia::render('Contacts/Edit', [

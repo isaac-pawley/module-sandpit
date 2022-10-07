@@ -10,6 +10,7 @@ class UpdateContactsRequest extends FormRequest
     public function authorize(): bool
     {
         dd($this->contact);
+
         return $this->user()?->can('update', $this->contact) ?: false;
     }
 
