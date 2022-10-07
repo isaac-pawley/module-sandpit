@@ -4,14 +4,13 @@ namespace IsaacPawley\ModuleSandpit\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use IsaacPawley\ModuleSandpit\DataTransferObjects\UpdateContactsDTO;
+use IsaacPawley\ModuleSandpit\Models\Contacts;
 
 class UpdateContactsRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        dd($this->contact);
-
-        return $this->user()?->can('update', $this->contact) ?: false;
+        return $this->user()?->can('update', Contacts::find($this->contact)) ?: false;
     }
 
     public function rules(): array

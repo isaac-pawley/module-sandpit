@@ -4,6 +4,7 @@ namespace IsaacPawley\ModuleSandpit\Policies;
 
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Auth;
 use IsaacPawley\ModuleSandpit\Models\Contacts;
 
 class ContactsPolicy
@@ -23,7 +24,7 @@ class ContactsPolicy
     // @phpstan-ignore-next-line
     public function create(User $user): bool
     {
-        return $user->name === 'Isaac Pawley'; // @phpstan-ignore-line
+        return $user->name !== 'Isaac Pawley'; // @phpstan-ignore-line
     }
 
     // @phpstan-ignore-next-line
